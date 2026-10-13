@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application - Tullu Rajota Orthodox Tewahdo Church</title>
+    <style>
+        :root {
+            --primary-color: #2b4c7e;
+            --primary-hover: #1f375c;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --border-color: #d1d5db;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 4px;
+            color: var(--primary-color);
+            font-size: 22px;
+        }
+
+        h3.church-title {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #4b5563;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        p.subtitle {
+            color: #6b7280;
+            margin-bottom: 24px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(43, 76, 126, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        input[type="file"] {
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #status-message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Employment & Service Application</h2>
+    <h3 class="church-title">Tullu Rajota Orthodox Tewahdo Church</h3>
+    <p class="subtitle">Please fill out the form below to apply for an open position or service role.</p>
+    
+    <!-- Replace YOUR_FORM_ID with your unique endpoint from Formspree -->
+    <form id="jobApplicationForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
+        
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="john@example.com">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000">
+        </div>
+
+        <div class="form-group">
+            <label for="position">Position / Ministry Role</label>
+            <select id="position" name="position" required>
+                <option value="">-- Select Role --</option>
+                <option value="Sunday School Teacher">Sunday School Teacher</option>
+                <option value="Choir Member / Zema Leader">Choir Member / Zema Leader</option>
+                <option value="Church Administrator">Church Administrator</option>
+                <option value="Youth Coordinator">Youth Coordinator</option>
+                <option value="Maintenance / Facilities">Maintenance / Facilities</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="experience">Relevant Background / Experience</label>
+            <input type="text" id="experience" name="experience" required placeholder="e.g., 3 years teaching Sunday school">
+        </div>
+
+        <div class="form-group">
+            <label for="resume">Upload Resume / CV (PDF / DOCX)</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+        </div>
+
+        <div class="form-group">
+            <label for="coverLetter">Statement of Intent / Cover Letter</label>
+            <textarea id="coverLetter" name="coverLetter" placeholder="Tell us about your background with the church and why you wish to serve..."></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn">Submit Application</button>
+        <div id="status-message"></div>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById("jobApplicationForm");
+    
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const status = document.getElementById("status-message");
+        const btn = document.getElementById("submitBtn");
+        
+        btn.textContent = "Sending...";
+        btn.disabled = true;
+        
+        const data = new FormData(event.target);
+        
+        fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: {
+                'Accept': 'json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                status.style.color = "#10b981";
+                status.textContent = "Success! Your application has been submitted.";
+                form.reset();
+            } else {
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        status.style.color = "#ef4444";
+                        status.textContent = data["errors"].map(error => error["message"]).join(", ");
+                    } else {
+                        status.style.color = "#ef4444";
+                        status.textContent = "Oops! There was a problem submitting your form.";
+                    }
+                })
+            }
+            btn.textContent = "Submit Application";
+            btn.disabled = false;
+        }).catch(error => {
+            status.style.color = "#ef4444";
+            status.textContent = "Oops! There was a problem submitting your form.";
+            btn.textContent = "Submit Application";
+            btn.disabled = false;
+        });
+    }
+    
+    form.addEventListener("submit", handleSubmit);
+</script>
+
+</body>
+</html>
