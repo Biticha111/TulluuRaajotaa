@@ -6,20 +6,21 @@
     <title>Job Application - Tullu Rajota Orthodox Tewahdo Church</title>
     <style>
         :root {
-            --primary-color: #2b4c7e;
-            --primary-hover: #1f375c;
-            --bg-color: #f3f4f6;
+            --primary-color: #1d4ed8;
+            --primary-hover: #1e40af;
+            --accent-color: #d97706; /* Warm gold touch */
+            --bg-gradient: linear-gradient(135deg, #eff6ff 0%, #fef3c7 100%);
             --card-bg: #ffffff;
             --text-color: #1f2937;
-            --border-color: #d1d5db;
+            --border-color: #cbd5e1;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background: var(--bg-gradient);
             color: var(--text-color);
             margin: 0;
-            padding: 20px;
+            padding: 30px 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,35 +30,37 @@
         .form-container {
             background-color: var(--card-bg);
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(29, 78, 216, 0.12);
             width: 100%;
-            max-width: 600px;
+            max-width: 650px;
+            border-top: 6px solid var(--primary-color);
         }
 
         h2 {
             margin-top: 0;
             margin-bottom: 4px;
             color: var(--primary-color);
-            font-size: 22px;
+            font-size: 24px;
         }
 
         h3.church-title {
             margin-top: 0;
-            margin-bottom: 8px;
-            color: #4b5563;
-            font-size: 16px;
-            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--accent-color);
+            font-size: 17px;
+            font-weight: 600;
         }
 
         p.subtitle {
-            color: #6b7280;
+            color: #4b5563;
             margin-bottom: 24px;
             font-size: 14px;
+            line-height: 1.5;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         label {
@@ -65,6 +68,7 @@
             margin-bottom: 6px;
             font-weight: 600;
             font-size: 14px;
+            color: #1e293b;
         }
 
         input[type="text"],
@@ -73,18 +77,20 @@
         select,
         textarea {
             width: 100%;
-            padding: 10px 12px;
+            padding: 12px;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 14px;
             box-sizing: border-box;
-            transition: border-color 0.2s;
+            transition: all 0.2s ease;
+            background-color: #f8fafc;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(43, 76, 126, 0.1);
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
         }
 
         textarea {
@@ -95,23 +101,35 @@
         input[type="file"] {
             font-size: 14px;
             color: #4b5563;
+            padding: 8px;
+            background-color: #f8fafc;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         button[type="submit"] {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color), #2563eb);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 14px 20px;
             font-size: 16px;
             font-weight: 600;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.2s;
+            transition: opacity 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
         }
 
         button[type="submit"]:hover {
-            background-color: var(--primary-hover);
+            opacity: 0.95;
+            transform: translateY(-1px);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(0);
         }
 
         #status-message {
@@ -125,57 +143,59 @@
 <body>
 
 <div class="form-container">
-    <h2>Employment & Service Application</h2>
+    <h2>Employment & Service Application<br><span style="font-size: 18px; font-weight: 500; color: #3b82f6;">Gaaffii Hojii & Tajaajilaa</span></h2>
     <h3 class="church-title">Tullu Rajota Orthodox Tewahdo Church</h3>
-    <p class="subtitle">Please fill out the form below to apply for an open position or service role.</p>
+    <p class="subtitle">
+        Please fill out the form below to apply for an open position or service role.<br>
+        <em>Bakka duwwaa hojii ykn gahee tajaajilaaf iyyachuuf maaloo foomii armaan gadii guutaa.</em>
+    </p>
     
-    <!-- Replace YOUR_FORM_ID with your unique endpoint from Formspree -->
     <form id="jobApplicationForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" enctype="multipart/form-data">
         
         <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="fullName" required placeholder="John Doe">
+            <label for="fullName">Full Name / Maqaa Guutuu</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="John Doe / Maqaa Keessan">
         </div>
 
         <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email">Email Address / Teessoo Iimeelii</label>
             <input type="email" id="email" name="email" required placeholder="john@example.com">
         </div>
 
         <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone">Phone Number / Lakkoofsa Bilbilaa</label>
             <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 000-0000">
         </div>
 
         <div class="form-group">
-            <label for="position">Position / Ministry Role</label>
+            <label for="position">Position / Ministry Role / Gahee Tajaajilaa</label>
             <select id="position" name="position" required>
-                <option value="">-- Select Role --</option>
-                <option value="Sunday School Teacher">Sunday School Teacher</option>
-                <option value="Choir Member / Zema Leader">Choir Member / Zema Leader</option>
-                <option value="Church Administrator">Church Administrator</option>
-                <option value="Youth Coordinator">Youth Coordinator</option>
-                <option value="Maintenance / Facilities">Maintenance / Facilities</option>
-                <option value="Other">Other</option>
+                <option value="">-- Select Role / Gahee Filadhu --</option>
+                <option value="Sunday School Teacher">Sunday School Teacher / Barsiisaa Mana Sagaltichaa</option>
+                <option value="Choir Member / Zema Leader">Choir Member / Zema Leader / Miseensa Faarfannaa</option>
+                <option value="Church Administrator">Church Administrator / Bulchiinsa Mana Kiristiyaanaa</option>
+                <option value="Youth Coordinator">Youth Coordinator / Qindeessaa Dargaggootaa</option>
+                <option value="Maintenance / Facilities">Maintenance / Facilities / Suphaa Fi Qindaa'ina</option>
+                <option value="Other">Other / Kan Biroo</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="experience">Relevant Background / Experience</label>
-            <input type="text" id="experience" name="experience" required placeholder="e.g., 3 years teaching Sunday school">
+            <label for="experience">Relevant Background / Experience / Muuxannoo Hojichaa</label>
+            <input type="text" id="experience" name="experience" required placeholder="e.g., 3 years teaching Sunday school / Fakkeenyaaf waggaa 3">
         </div>
 
         <div class="form-group">
-            <label for="resume">Upload Resume / CV (PDF / DOCX)</label>
+            <label for="resume">Upload Resume / CV (PDF / DOCX) / CV Ol Fe'aa</label>
             <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
         </div>
 
         <div class="form-group">
-            <label for="coverLetter">Statement of Intent / Cover Letter</label>
-            <textarea id="coverLetter" name="coverLetter" placeholder="Tell us about your background with the church and why you wish to serve..."></textarea>
+            <label for="coverLetter">Statement of Intent / Cover Letter / Ergaa Gabaabaa</label>
+            <textarea id="coverLetter" name="coverLetter" placeholder="Tell us about your background with the church and why you wish to serve... / Maaliif tajaajiluu akka barbaaddan barreessaa..."></textarea>
         </div>
 
-        <button type="submit" id="submitBtn">Submit Application</button>
+        <button type="submit" id="submitBtn">Submit Application / Ergi</button>
         <div id="status-message"></div>
     </form>
 </div>
@@ -188,7 +208,7 @@
         const status = document.getElementById("status-message");
         const btn = document.getElementById("submitBtn");
         
-        btn.textContent = "Sending...";
+        btn.textContent = "Sending / Ergaa jira...";
         btn.disabled = true;
         
         const data = new FormData(event.target);
@@ -202,7 +222,7 @@
         }).then(response => {
             if (response.ok) {
                 status.style.color = "#10b981";
-                status.textContent = "Success! Your application has been submitted.";
+                status.textContent = "Success! Your application has been submitted. / Milkaa'eera! Iyyatni keessan dhiyaateera.";
                 form.reset();
             } else {
                 response.json().then(data => {
@@ -211,16 +231,16 @@
                         status.textContent = data["errors"].map(error => error["message"]).join(", ");
                     } else {
                         status.style.color = "#ef4444";
-                        status.textContent = "Oops! There was a problem submitting your form.";
+                        status.textContent = "Oops! There was a problem submitting your form. / Rakkoo uumameen iyyatni hin dabarsamne.";
                     }
                 })
             }
-            btn.textContent = "Submit Application";
+            btn.textContent = "Submit Application / Ergi";
             btn.disabled = false;
         }).catch(error => {
             status.style.color = "#ef4444";
-            status.textContent = "Oops! There was a problem submitting your form.";
-            btn.textContent = "Submit Application";
+            status.textContent = "Oops! There was a problem submitting your form. / Rakkoo uumameen iyyatni hin dabarsamne.";
+            btn.textContent = "Submit Application / Ergi";
             btn.disabled = false;
         });
     }
